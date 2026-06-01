@@ -2,13 +2,28 @@
 
 MCP server for [AssistantMail](https://assistant-mail.ai) — lets AI agents send and receive email through a managed mailbox.
 
-[Website](https://assistant-mail.ai) · [Privacy Policy](https://assistant-mail.ai/privacy.html) · [Terms of Use](https://assistant-mail.ai/terms.html)
+[Website](https://assistant-mail.ai) · [Privacy Policy](https://assistant-mail.ai/privacy.html) · [Terms of Use](https://assistant-mail.ai/terms.html) · [Contributing](./CONTRIBUTING.md)
 
 ## Installation
 
 ```bash
 npx @assistantmail/assistantmail-mcp
 ```
+
+Requires Node.js 24 or newer.
+
+## For npm users
+
+If you are installing from npm and want the shortest setup path:
+
+1. Install/run with:
+
+  ```bash
+  npx -y @assistantmail/assistantmail-mcp
+  ```
+
+2. Set `ASSISTANT_MAIL_API_KEY` in your MCP client environment.
+3. Call `assistantmail_list_mailboxes` first to get your `mailboxId`.
 
 ### Claude Desktop
 
