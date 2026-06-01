@@ -1,0 +1,37 @@
+{
+  "name": "@assistantmail/assistantmail-mcp",
+  "version": "1.2.1",
+  "description": "AssistantMail MCP server",
+  "type": "module",
+  "bin": {
+    "assistantmail-mcp": "src/index.js"
+  },
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node --check src/index.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "mcp",
+    "assistantmail",
+    "claude",
+    "openai",
+    "OpenClaw"
+  ],
+  "author": "Crider Technologies",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  }
+}
