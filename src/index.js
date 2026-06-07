@@ -533,7 +533,17 @@ server.tool(
         apiKey,
         { text, html },
       );
-      const reply = result.data ?? {};
+      const reply = result.data;
+      if (
+        !reply
+        || typeof reply !== 'object'
+        || typeof reply.messageId !== 'string'
+        || typeof reply.status !== 'string'
+        || typeof reply.inReplyTo !== 'string'
+        || typeof reply.subject !== 'string'
+      ) {
+        throw new Error('AssistantMail API returned an unexpected reply payload.');
+      }
       return {
         content: [
           {
@@ -543,7 +553,7 @@ server.tool(
         ],
         structuredContent: {
           messageId: reply.messageId,
-          status: reply.status ?? result.status,
+          status: reply.status,
           inReplyTo: reply.inReplyTo,
           subject: reply.subject,
         },
