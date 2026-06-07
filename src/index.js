@@ -505,6 +505,74 @@ server.tool(
 );
 
 server.tool(
+  'assistantmail_reply_message',
+  'Replies to an existing message in a mailbox thread.',
+  {
+    mailboxId: z.string().min(1),
+    messageId: z.string().min(1),
+    text: z.string().optional(),
+    html: z.string().optional(),
+    apiKey: z.string().startsWith('amk_').optional(),
+  },
+  async ({ mailboxId, messageId, text, html, apiKey }) => {
+    if (!text && !html) {
+      return {
+        content: [
+          {
+            type: 'text',
+            text: 'assistantmail_reply_message failed: Provide at least one of text or html.',
+          },
+        ],
+        isError: true,
+      };
+    }
+
+    try {
+      const result = await assistantMailPost(
+        `/v1/mailboxes/${mailboxId}/messages/${messageId}/reply`,
+        apiKey,
+        { text, html },
+      );
+      const reply = result.data;
+      if (
+        !reply
+        || typeof reply !== 'object'
+        || typeof reply.messageId !== 'string'
+        || typeof reply.status !== 'string'
+        || typeof reply.inReplyTo !== 'string'
+        || typeof reply.subject !== 'string'
+      ) {
+        throw new Error('AssistantMail API returned an unexpected reply payload.');
+      }
+      return {
+        content: [
+          {
+            type: 'text',
+            text: `Queued reply for message ${messageId} in mailbox ${mailboxId}.`,
+          },
+        ],
+        structuredContent: {
+          messageId: reply.messageId,
+          status: reply.status,
+          inReplyTo: reply.inReplyTo,
+          subject: reply.subject,
+        },
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: 'text',
+            text: `assistantmail_reply_message failed: ${error instanceof Error ? error.message : String(error)}`,
+          },
+        ],
+        isError: true,
+      };
+    }
+  },
+);
+
+server.tool(
   'assistantmail_delete_messages',
   'Deletes messages from a mailbox by IDs or deletes all messages.',
   {
