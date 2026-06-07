@@ -103,6 +103,7 @@ Mail API routes use a `mailboxId` (UUID), not an email address. Use `assistantma
 | `assistantmail_list_messages` | List inbound and outbound messages for a mailbox. Supports `since` (ISO timestamp) and `limit` (max 100). |
 | `assistantmail_get_message` | Fetch a single message including `textBody` and `htmlBody`. Bodies are only returned within the plan's retention window; `bodyExpired: true` is set if the window has elapsed. |
 | `assistantmail_send_email` | Queue an outbound email. Requires `to`, `subject`, and at least one of `text` or `html`. |
+| `assistantmail_reply_message` | Reply to an existing message. Requires `messageId` and at least one of `text` or `html`; recipients and subject are derived automatically. |
 | `assistantmail_delete_messages` | Delete messages by `messageIds` array, or pass `deleteAll: true` to clear the mailbox. |
 | `assistantmail_get_usage` | Get daily and monthly send quota usage for a mailbox. A `null` limit means unlimited. |
 
@@ -170,6 +171,17 @@ curl "$BASE/v1/mailboxes/<mailboxId>/messages" -H "x-api-key: $API_KEY"
     "to": "recipient@example.com",
     "subject": "Hello",
     "text": "Hi there"
+  }
+}
+```
+
+```json
+{
+  "tool": "assistantmail_reply_message",
+  "input": {
+    "mailboxId": "<uuid>",
+    "messageId": "<uuid>",
+    "text": "Thanks for the update."
   }
 }
 ```
