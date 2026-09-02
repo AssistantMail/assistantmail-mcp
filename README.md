@@ -1,8 +1,18 @@
 # assistantmail-mcp
 
-MCP server for [AssistantMail](https://assistant-mail.ai) — lets AI agents send and receive email through a managed mailbox.
+MCP server for [AssistantMail](https://assistant-mail.ai) — give AI agents a managed mailbox to send and receive email.
 
-[Website](https://assistant-mail.ai) · [Privacy Policy](https://assistant-mail.ai/privacy.html) · [Terms of Use](https://assistant-mail.ai/terms.html) · [Contributing](./CONTRIBUTING.md)
+Built for personal and small-team OpenClaw / Hermes operators who want agent email with allowlist, consent, retention, and spend caps you control. Listed on ClawHub for easy install — not an official OpenClaw endorsement.
+
+[Get Free](https://app.assistant-mail.ai/?utm_source=github&utm_medium=readme&utm_campaign=clawhub_readme_amplify) · [Docs](https://assistant-mail.ai/docs) · [Website](https://assistant-mail.ai) · [Privacy](https://assistant-mail.ai/privacy.html) · [Terms](https://assistant-mail.ai/terms.html) · [Contributing](./CONTRIBUTING.md)
+
+## OpenClaw / ClawHub
+
+```bash
+openclaw skills install @assistantmail/assistant-mail
+```
+
+Then register MCP + `ASSISTANT_MAIL_API_KEY`. Skill: [assistant-mail on ClawHub](https://clawhub.ai/assistantmail/skills/assistant-mail). Same MCP works with Hermes.
 
 ## Installation
 
@@ -10,20 +20,7 @@ MCP server for [AssistantMail](https://assistant-mail.ai) — lets AI agents sen
 npx @assistantmail/assistantmail-mcp
 ```
 
-Requires Node.js 24 or newer.
-
-## For npm users
-
-If you are installing from npm and want the shortest setup path:
-
-1. Install/run with:
-
-  ```bash
-  npx -y @assistantmail/assistantmail-mcp
-  ```
-
-2. Set `ASSISTANT_MAIL_API_KEY` in your MCP client environment.
-3. Call `assistantmail_list_mailboxes` first to get your `mailboxId`.
+Node 24+.
 
 ### Claude Desktop
 
@@ -59,13 +56,11 @@ If you are installing from npm and want the shortest setup path:
 
 ## Prerequisites
 
-An AssistantMail account and API key are required before the server can do anything useful.
+1. Create a free account via the [Get Free](https://app.assistant-mail.ai/?utm_source=github&utm_medium=readme&utm_campaign=clawhub_readme_amplify) link above (1 agent, 25/day).
+2. Go to **API Keys** and create a key (`amk_...`). Copy it immediately — it is only shown once.
+3. Set `ASSISTANT_MAIL_API_KEY`; call `assistantmail_list_mailboxes` to get your `mailboxId` UUID.
 
-1. Sign in at [app.assistant-mail.ai](https://app.assistant-mail.ai).
-2. Go to **API Keys** and create a new key. Copy it immediately — it is only shown once.
-3. Set `ASSISTANT_MAIL_API_KEY` in the MCP server environment (see configs above), or pass `apiKey` directly in each tool call.
-
-Mail API routes use a `mailboxId` (UUID), not an email address. Use `assistantmail_list_mailboxes` after connecting to discover your mailbox IDs.
+Paid plans: upgrade in-app only (not Payment Links). Docs: [assistant-mail.ai/docs](https://assistant-mail.ai/docs)
 
 ## Environment variables
 
