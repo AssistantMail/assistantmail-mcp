@@ -12,12 +12,12 @@ Built for personal and small-team OpenClaw / Hermes operators who want agent ema
 openclaw skills install @assistantmail/assistant-mail
 ```
 
-Then register MCP + `ASSISTANT_MAIL_API_KEY`. Skill: [assistant-mail on ClawHub](https://clawhub.ai/assistantmail/skills/assistant-mail). Same MCP works with Hermes.
+Then configure your MCP client to run this server and set `ASSISTANT_MAIL_API_KEY`. Skill: [assistant-mail on ClawHub](https://clawhub.ai/assistantmail/skills/assistant-mail). Same MCP works with Hermes.
 
 ## Installation
 
 ```bash
-npx @assistantmail/assistantmail-mcp
+npx -y @assistantmail/assistantmail-mcp
 ```
 
 Node 24+.
@@ -58,7 +58,7 @@ Node 24+.
 
 1. Create a free account via the [Get Free](https://app.assistant-mail.ai/?utm_source=github&utm_medium=readme&utm_campaign=clawhub_readme_amplify) link above (1 agent, 25/day).
 2. Go to **API Keys** and create a key (`amk_...`). Copy it immediately — it is only shown once.
-3. Set `ASSISTANT_MAIL_API_KEY`; call `assistantmail_list_mailboxes` to get your `mailboxId` UUID.
+3. Set `ASSISTANT_MAIL_API_KEY`; call `assistantmail_list_mailboxes` to get your `mailboxId` UUID. Mail API routes use that UUID, not an email address.
 
 Paid plans: upgrade in-app only (not Payment Links). Docs: [assistant-mail.ai/docs](https://assistant-mail.ai/docs)
 
