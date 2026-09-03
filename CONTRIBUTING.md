@@ -20,7 +20,10 @@ Thanks for your interest in contributing.
    ```bash
    npm run lint
    npm run build
+   npm run mcp:check
    ```
+
+   If you change `package.json` `name`, `version`, or `mcpName`, update `server.json` to match. See [docs/MCP_REGISTRY.md](./docs/MCP_REGISTRY.md).
 
 3. Run the server locally:
 
@@ -43,6 +46,7 @@ Thanks for your interest in contributing.
    ```bash
    npm run lint
    npm run build
+   npm run mcp:check
    ```
 
 3. Open a pull request targeting `main`.

@@ -62,6 +62,10 @@ Node 24+.
 
 Paid plans: upgrade in-app only (not Payment Links). Use **Upgrade** in the AssistantMail app — checkout is not sold via Stripe Payment Links. Docs: [assistant-mail.ai/docs](https://assistant-mail.ai/docs)
 
+## Official MCP Registry
+
+Packaging for the [Official MCP Registry](https://registry.modelcontextprotocol.io) lives in [`server.json`](./server.json). The listing is **not live** until an AssistantMail GitHub org owner publishes with `mcp-publisher`. See [docs/MCP_REGISTRY.md](./docs/MCP_REGISTRY.md) for login and publish steps.
+
 ## Environment variables
 
 | Variable | Default | Description |
