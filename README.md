@@ -64,7 +64,9 @@ Paid plans: upgrade in-app only (not Payment Links). Use **Upgrade** in the Assi
 
 ## Official MCP Registry
 
-Packaging for the [Official MCP Registry](https://registry.modelcontextprotocol.io) lives in [`server.json`](./server.json). The listing is **not live** until an AssistantMail GitHub org owner publishes with `mcp-publisher`. See [docs/MCP_REGISTRY.md](./docs/MCP_REGISTRY.md) for login and publish steps.
+The listing is **live** as [`io.github.AssistantMail/assistantmail-mcp`](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.AssistantMail/assistantmail-mcp) on the Official MCP Registry. Product docs: [assistant-mail.ai/docs](https://assistant-mail.ai/docs).
+
+Packaging lives in [`server.json`](./server.json). After a version bump, republish with `mcp-publisher` — see [docs/MCP_REGISTRY.md](./docs/MCP_REGISTRY.md).
 
 ## Environment variables
 
