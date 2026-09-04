@@ -1,6 +1,8 @@
 # Official MCP Registry packaging
 
-This repo includes a `server.json` so [Assistant Mail MCP](https://github.com/AssistantMail/assistantmail-mcp) can be published to the [Official MCP Registry](https://registry.modelcontextprotocol.io). The listing is **not live** until someone with GitHub org ownership (Daylon / an AssistantMail org owner) authenticates and runs `mcp-publisher publish`.
+This repo includes a `server.json` for the [Official MCP Registry](https://registry.modelcontextprotocol.io). The listing is **live** as [`io.github.AssistantMail/assistantmail-mcp`](https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.AssistantMail/assistantmail-mcp) (status `active`). Product docs: [assistant-mail.ai/docs](https://assistant-mail.ai/docs).
+
+The first publish is done. Use the steps below to **republish** after a version bump.
 
 Directory form submits (Glama and other aggregators) are handled separately. This file covers in-repo registry packaging only.
 
@@ -24,12 +26,12 @@ Keep these in lockstep on every release:
 
 ## Prerequisite: npm package must include `mcpName`
 
-The registry fetches `@assistantmail/assistantmail-mcp` from npm and requires `mcpName` in that published `package.json`. A version already on npm **without** `mcpName` cannot be used for the first registry publish.
+The registry fetches `@assistantmail/assistantmail-mcp` from npm and requires `mcpName` in that published `package.json`. The live listing already includes it. Future version bumps still need `mcpName` on the published npm package before you republish to the registry.
 
 1. Bump `package.json` and `server.json` to the same new version.
 2. Tag and publish to npm as usual (see [`.github/workflows/release.yml`](../.github/workflows/release.yml)).
 3. Confirm the published tarball includes `"mcpName": "io.github.AssistantMail/assistantmail-mcp"`.
-4. Then publish to the Official MCP Registry (below).
+4. Then republish to the Official MCP Registry (below).
 
 ## Install `mcp-publisher`
 
@@ -43,7 +45,7 @@ macOS via Homebrew: `brew install mcp-publisher`.
 
 Docs: [Quickstart: Publish a Server](https://github.com/modelcontextprotocol/registry/blob/main/docs/modelcontextprotocol-io/quickstart.mdx).
 
-## Login and publish (manual)
+## Login and republish (manual)
 
 GitHub auth grants the `io.github.AssistantMail/*` namespace only if the account is an **Owner** of the [AssistantMail](https://github.com/AssistantMail) org. Ordinary membership is not enough.
 
@@ -57,7 +59,7 @@ mcp-publisher publish
 
 `login github` prints a device-code URL. Complete authorization in the browser, then return to the terminal.
 
-Verify after a successful publish (do not treat this as live until this search returns the server):
+Verify after a successful republish (the search should return the new version as `active`):
 
 ```bash
 curl "https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.AssistantMail/assistantmail-mcp"
@@ -67,14 +69,14 @@ curl "https://registry.modelcontextprotocol.io/v0.1/servers?search=io.github.Ass
 
 [`.github/workflows/publish-mcp-registry.yml`](../.github/workflows/publish-mcp-registry.yml) is a **manual** (`workflow_dispatch`) stub. It uses GitHub OIDC (`mcp-publisher login github-oidc`) from this repository.
 
-It does **not** run on tag push. Enable it only after:
+It does **not** run on tag push. Use it to republish after:
 
 - An npm release that includes `mcpName` is published
-- An AssistantMail org owner is prepared to approve the first publish
+- An AssistantMail org owner is prepared to approve the republish
 
 ## Not in scope
 
-- Claiming the Official MCP Registry listing is live before `mcp-publisher publish` succeeds
+- Treating a version bump as live on the Official MCP Registry before `mcp-publisher publish` succeeds
 - DNS / `ai.assistant-mail` namespace (would need domain auth on `assistant-mail.ai`)
 - Aggregator directory forms
 - Usage, MAU, or revenue claims

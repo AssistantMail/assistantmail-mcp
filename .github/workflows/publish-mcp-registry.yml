@@ -1,5 +1,5 @@
-# Manual stub for Official MCP Registry publish.
-# Do not treat the listing as live until this job (or a local mcp-publisher publish) succeeds.
+# Manual stub for Official MCP Registry republish after version bumps.
+# First publish is done; listing is live as io.github.AssistantMail/assistantmail-mcp.
 # Prerequisites: npm release that includes package.json mcpName, and AssistantMail org Owner auth.
 name: Publish MCP Registry
 
