@@ -4,7 +4,7 @@ MCP server for [AssistantMail](https://assistant-mail.ai) — give AI agents a m
 
 Built for personal and small-team OpenClaw / Hermes operators who want agent email with allowlist, consent, retention, and spend caps you control. Listed on ClawHub for easy install — not an official OpenClaw endorsement.
 
-[Get Free](https://app.assistant-mail.ai/?utm_source=github&utm_medium=readme&utm_campaign=clawhub_readme_amplify) · [Docs](https://assistant-mail.ai/docs) · [Website](https://assistant-mail.ai) · [Privacy](https://assistant-mail.ai/privacy.html) · [Terms](https://assistant-mail.ai/terms.html) · [Contributing](./CONTRIBUTING.md)
+[Get Free](https://app.assistant-mail.ai/?utm_source=npm&utm_medium=readme&utm_campaign=npm_free&plan=free) · [Docs](https://assistant-mail.ai/docs) · [Website](https://assistant-mail.ai) · [Privacy](https://assistant-mail.ai/privacy.html) · [Terms](https://assistant-mail.ai/terms.html) · [Contributing](./CONTRIBUTING.md)
 
 ## OpenClaw / ClawHub
 
@@ -56,7 +56,7 @@ Node 24+.
 
 ## Prerequisites
 
-1. Create a free account via the [Get Free](https://app.assistant-mail.ai/?utm_source=github&utm_medium=readme&utm_campaign=clawhub_readme_amplify) link above (1 agent, 25/day; current limits: [Docs](https://assistant-mail.ai/docs)).
+1. Create a free account via the [Get Free](https://app.assistant-mail.ai/?utm_source=npm&utm_medium=readme&utm_campaign=npm_free&plan=free) link above (1 agent, 25/day; current limits: [Docs](https://assistant-mail.ai/docs)).
 2. Go to **API Keys** and create a key (`amk_...`). Copy it immediately — it is only shown once.
 3. Set `ASSISTANT_MAIL_API_KEY`; call `assistantmail_list_mailboxes` to get your `mailboxId` UUID. Mail API routes use that UUID, not an email address.
 
