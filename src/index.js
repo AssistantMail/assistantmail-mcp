@@ -1,92 +1,19 @@
 #!/usr/bin/env node
-import process from 'node:process';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
-
-const apiBaseUrl = process.env.ASSISTANT_MAIL_API_BASE_URL ?? 'https://api.assistant-mail.ai';
-const defaultApiKey = process.env.ASSISTANT_MAIL_API_KEY ?? '';
+import {
+  apiBaseUrl,
+  assistantMailDelete,
+  assistantMailGet,
+  assistantMailPost,
+  assistantMailPut,
+} from './assistant-mail-request.js';
 
 const server = new McpServer({
   name: 'assistantmail-mcp',
   version: '1.2.0',
 });
-
-function resolveApiKey(inputApiKey) {
-  const key = (inputApiKey ?? '').trim() || defaultApiKey.trim();
-  return key.startsWith('amk_') ? key : null;
-}
-
-async function assistantMailRequest({ method, path, apiKey, query = {}, body }) {
-  const key = resolveApiKey(apiKey);
-  if (!key) {
-    throw new Error(
-      'Missing API key. Provide apiKey in tool input or set ASSISTANT_MAIL_API_KEY in the MCP server environment.',
-    );
-  }
-
-  const url = new URL(path, apiBaseUrl);
-  for (const [k, v] of Object.entries(query)) {
-    if (v !== undefined && v !== null && `${v}`.length > 0) {
-      url.searchParams.set(k, `${v}`);
-    }
-  }
-
-  const headers = {
-    Accept: 'application/json',
-    'x-api-key': key,
-  };
-
-  if (body !== undefined) {
-    headers['Content-Type'] = 'application/json';
-  }
-
-  const res = await fetch(url, {
-    method,
-    headers,
-    body: body !== undefined ? JSON.stringify(body) : undefined,
-  });
-
-  const raw = await res.text();
-  let parsed = null;
-  try {
-    parsed = raw ? JSON.parse(raw) : null;
-  } catch {
-    parsed = { raw };
-  }
-
-  if (!res.ok) {
-    const message = typeof parsed?.message === 'string'
-      ? parsed.message
-      : `AssistantMail API request failed (${res.status}).`;
-    throw new Error(message);
-  }
-
-  return {
-    data: parsed,
-    status: res.status,
-    request: {
-      method,
-      url: url.toString(),
-    },
-  };
-}
-
-async function assistantMailGet(path, apiKey, query = {}) {
-  return assistantMailRequest({ method: 'GET', path, apiKey, query });
-}
-
-async function assistantMailPost(path, apiKey, body) {
-  return assistantMailRequest({ method: 'POST', path, apiKey, body });
-}
-
-async function assistantMailPut(path, apiKey, body) {
-  return assistantMailRequest({ method: 'PUT', path, apiKey, body });
-}
-
-async function assistantMailDelete(path, apiKey, body) {
-  return assistantMailRequest({ method: 'DELETE', path, apiKey, body });
-}
 
 server.tool(
   'assistantmail_health',

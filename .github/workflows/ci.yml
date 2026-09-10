@@ -28,5 +28,8 @@ jobs:
       - name: Run build
         run: npm run build
 
+      - name: Run tests
+        run: npm test
+
       - name: Check MCP registry packaging
         run: npm run mcp:check
