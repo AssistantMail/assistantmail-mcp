@@ -1,6 +1,6 @@
 {
   "name": "@assistantmail/assistantmail-mcp",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "mcpName": "io.github.AssistantMail/assistantmail-mcp",
   "description": "AssistantMail MCP server",
   "repository": {
