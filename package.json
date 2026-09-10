@@ -21,9 +21,10 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "node --check src/index.js",
-    "lint": "node --check src/index.js",
+    "build": "node --check src/index.js src/assistant-mail-request.js src/format-api-error.js",
+    "lint": "node --check src/index.js src/assistant-mail-request.js src/format-api-error.js",
     "start": "node src/index.js",
+    "test": "node --test",
     "mcp:check": "node scripts/check-mcp-registry.mjs"
   },
   "keywords": [
